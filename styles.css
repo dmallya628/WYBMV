@@ -29,6 +29,7 @@
 #qText {
     display: none;
     resize: none;
+    outline: none;
     width: 44%;
     margin-top: 55vh;
     background-color: transparent;
