@@ -13,7 +13,7 @@
         </div>
 
         <div class="center-container" id="content-container">
-            <img src="coolgoma.gif" alt="goma-cat-cool">
+            <img src="/images/coolgoma.gif" alt="coolgoma.gif">
         </div>
 
         <div class="button-container">
@@ -22,13 +22,14 @@
 
         <script>
             const gifMap = {
-                "heyy cutie!": "sparkleygoma.gif",
-                "I was wondering...": "blueroses.gif",
-                "YESS!": "danceygoma.gif",
-                "nah": "gomasigh.gif",
-                "nope": "flowergoma.gif",
-                "NUH UH": "gomacatsad.gif",
-                "...JK!": "blueroses.gif",
+                "heyy cutie!": "/images/sparkleygoma.gif",
+                "I was wondering...": "/images/blueroses.gif",
+                "YESS!": "/images/sparkleygoma.gif",
+                "YEA!!": "/images/danceygoma.gif",
+                "nah": "/images/gomasigh.gif",
+                "nope": "/images/flowergoma.gif",
+                "NUH UH": "/images/gomacatsad.gif",
+                "...JK!": "/images/blueroses.gif",
 
                 // Add more mappings as needed
             };
@@ -61,6 +62,7 @@
                 newImage.src = gifUrl;
                 newImage.alt = "new-gif";
 
+                contentContainer.innerHTML = "";
                 contentContainer.appendChild(newImage);
             }
 
@@ -114,8 +116,14 @@
                 if (gifUrl) {
                     updateContent(gifUrl);
                 }
-                    textarea.value = "YAYY!";
+                
+                if (button1.innerHTML === "YESS!") {
+                    button1.innerHTML = "YEA!!";
+                    textarea.value = "wait...really?!";
+                } else if (button1.innerHTML === "YEA!!") {
+                    textarea.value = "YAYYY!!";
                     removeYButtons();
+                }
             }
 
             function nah() {
@@ -129,7 +137,7 @@
 
                 if (button2.innerHTML === "nah") {
                     button2.innerHTML = "nope";
-                    textarea.value = "really?";
+                    textarea.value = "you don't wanna be my Valentine?";
                 } else if (button2.innerHTML === "nope"){
                     button2.innerHTML = "NUH UH";
                     textarea.value = "but...!";
