@@ -108,3 +108,13 @@
 #nobutton:hover {
     background-color: rgb(253, 76, 105);
 }
+
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    #qText {
+        font-size: 28px;
+    }
+}
