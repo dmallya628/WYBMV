@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>will you...</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="banner">
+        <div class="text-container">
+            <textarea name="toptext" id="qText">will you be my Valentine?</textarea>
+        </div>
+
+        <div class="center-container" id="content-container">
+            <img src="coolgoma.gif" alt="goma-cat-cool">
+        </div>
+
+        <div class="button-container">
+            <button id="loadbutton" onclick="loadscreen2()">heyy cutie!</button>
+        </div>
+
+        <script>
+            const gifMap = {
+                "heyy cutie!": "sparkleygoma.gif",
+                "I was wondering...": "blueroses.gif",
+                "YESS!": "danceygoma.gif",
+                "nah": "gomasigh.gif",
+                "nope": "flowergoma.gif",
+                "NUH UH": "gomacatsad.gif",
+                "...JK!": "blueroses.gif",
+
+                // Add more mappings as needed
+            };
+
+            function loadscreen2() {
+                var button = document.getElementById("loadbutton");
+                var buttonContainer = document.querySelector(".button-container");
+
+                var gifUrl = gifMap[button.innerHTML];
+
+                if (gifUrl) {
+                    updateContent(gifUrl);
+                }
+
+                if (button.innerHTML === "heyy cutie!") {
+                    button.innerHTML = "I was wondering...";
+                } else if (button.innerHTML === "I was wondering...") {
+                    replaceButtons(["YESS!", "nah"], ["yayy", "nah"]);
+                    toggleText();
+                } else {
+                    button.innerHTML = "heyy cutie!";
+                }
+            }
+
+            function updateContent(gifUrl) {
+                var contentContainer = document.getElementById("content-container");
+                contentContainer.innerHTML = "";
+
+                var newImage = document.createElement("img");
+                newImage.src = gifUrl;
+                newImage.alt = "new-gif";
+
+                contentContainer.appendChild(newImage);
+            }
+
+            function replaceButtons(buttonTexts, clickHandlers) {
+                var buttonContainer = document.querySelector(".button-container");
+                var previousButton = document.getElementById("loadbutton");
+                var yesButton = document.getElementById("yesbutton");
+                var noButton = document.getElementById("nobutton");
+
+                if (previousButton) {
+                    buttonContainer.removeChild(previousButton);
+
+                    for (var i = 0; i < buttonTexts.length; i++) {
+                        var newButton = document.createElement("button");
+                        newButton.id = buttonTexts[i] === "YESS!" ? "yesbutton" : "nobutton";
+                        newButton.innerHTML = buttonTexts[i];
+                        newButton.onclick = window[clickHandlers[i]]; // Use window[functionName] to get the function by name
+
+                        buttonContainer.appendChild(newButton);
+                    }
+                }
+            }
+
+            function removeYButtons() {
+                var buttonContainer = document.querySelector(".button-container");
+                var yesButton = document.getElementById("yesbutton");
+                var noButton = document.getElementById("nobutton");
+
+                buttonContainer.removeChild(yesButton);
+                buttonContainer.removeChild(noButton);
+                
+            }
+
+            function removeNButtons() {
+                var buttonContainer = document.querySelector(".button-container");
+                var noButton = document.getElementById("nobutton");
+
+                buttonContainer.removeChild(noButton);
+            }
+
+            function toggleText() {
+                const textarea = document.getElementById('qText');
+                textarea.style.display = (textarea.style.display === 'none' || textarea.style.display === '') ? 'block' : 'none';
+            }
+
+            function yayy() {
+                var button1 = document.getElementById("yesbutton");
+                var textarea = document.getElementById("qText");
+                var gifUrl = gifMap[button1.innerHTML];
+
+                if (gifUrl) {
+                    updateContent(gifUrl);
+                }
+                    textarea.value = "YAYY!";
+                    removeYButtons();
+            }
+
+            function nah() {
+                var button2 = document.getElementById("nobutton");
+                var textarea = document.getElementById("qText");
+                var gifUrl = gifMap[button2.innerHTML];
+
+                if (gifUrl) {
+                    updateContent(gifUrl);
+                }
+
+                if (button2.innerHTML === "nah") {
+                    button2.innerHTML = "nope";
+                    textarea.value = "really?";
+                } else if (button2.innerHTML === "nope"){
+                    button2.innerHTML = "NUH UH";
+                    textarea.value = "but...!";
+                } else if (button2.innerHTML === "NUH UH") {
+                    button2.innerHTML = "...JK!";
+                    textarea.value = "okayy...";
+                } else if (button2.innerHTML === "...JK!") {
+                    textarea.value = "so... is that a yes?"
+                    removeNButtons();
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>
