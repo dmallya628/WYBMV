@@ -86,7 +86,14 @@
                 }
             }
 
-            function removeYButtons() {
+            function removeYButton() {
+                var buttonContainer = document.querySelector(".button-container");
+                var yesButton = document.getElementById("yesbutton");
+
+                yesButton.style.display = "none";
+            }
+
+            function removeYNButtons() {
                 var buttonContainer = document.querySelector(".button-container");
                 var yesButton = document.getElementById("yesbutton");
                 var noButton = document.getElementById("nobutton");
@@ -96,12 +103,24 @@
                 
             }
 
-            function removeNButtons() {
+            function removeNButton() {
                 var buttonContainer = document.querySelector(".button-container");
                 var noButton = document.getElementById("nobutton");
 
                 buttonContainer.removeChild(noButton);
             }
+
+            function returnYbutton() {
+                var buttonContainer = document.querySelector(".button-container");
+                var yesButton = document.getElementById("yesbutton");
+
+                if (yesButton.style.display === "none" || yesButton.style.display === "") {
+                    yesButton.style.display = "block";
+                } else {
+                    yesButton.style.display = "none";
+                }
+            }
+
 
             function toggleText() {
                 const textarea = document.getElementById('qText');
@@ -122,11 +141,12 @@
                     textarea.value = "wait...really?!";
                 } else if (button1.innerHTML === "YEA!!") {
                     textarea.value = "YAYYY!!";
-                    removeYButtons();
+                    removeYNButtons();
                 }
             }
 
             function nah() {
+                var button1 = document.getElementById("yesbutton");
                 var button2 = document.getElementById("nobutton");
                 var textarea = document.getElementById("qText");
                 var gifUrl = gifMap[button2.innerHTML];
@@ -138,6 +158,7 @@
                 if (button2.innerHTML === "nah") {
                     button2.innerHTML = "nope";
                     textarea.value = "you don't wanna be my Valentine?";
+                    removeYButton();
                 } else if (button2.innerHTML === "nope"){
                     button2.innerHTML = "NUH UH";
                     textarea.value = "but...!";
@@ -146,7 +167,8 @@
                     textarea.value = "okayy...";
                 } else if (button2.innerHTML === "...JK!") {
                     textarea.value = "so... is that a yes?"
-                    removeNButtons();
+                    removeNButton();
+                    returnYbutton();
                 }
             }
         </script>
