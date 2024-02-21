@@ -11,6 +11,8 @@
     src: url('GloriaHallelujah-Regular.ttf') format(''),
   }
 
+  /* ID selector is a # and the class selector is a . */
+
 .banner {
     width: 100%;
     height: 100vh;
